@@ -41,6 +41,7 @@ public class PostRepository {
                 .findAllAsync()
                 .asObservable()
                 .filter(RealmResults::isLoaded)
+                .first()
                 .map(realmResults -> {
                     ArrayList<PostModel> postList = new ArrayList<>(realmResults.size());
                     postList.addAll(realm.copyFromRealm(realmResults));
@@ -50,7 +51,7 @@ public class PostRepository {
 
     }
 
-    public Observable<List<PostModel>> getLikedPosts() {
+    public Observable<List<PostModel>> getFavoritePosts() {
         Realm realm = Realm.getDefaultInstance();
 
         return realm.where(PostModel.class)
@@ -58,10 +59,10 @@ public class PostRepository {
                 .findAllAsync()
                 .asObservable()
                 .filter(RealmResults::isLoaded)
+                .first()
                 .map(realmResults -> {
                     ArrayList<PostModel> postList = new ArrayList<>(realmResults.size());
                     postList.addAll(realm.copyFromRealm(realmResults));
-
                     return postList;
                 });
 

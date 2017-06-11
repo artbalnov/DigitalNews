@@ -1,15 +1,14 @@
-package artbalnov.digitalnewsrefactored.presentation.main;
+package artbalnov.digitalnewsrefactored.presentation.main.favorite;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -20,23 +19,19 @@ import artbalnov.digitalnewsrefactored.base.annotations.LayoutResourceId;
 import artbalnov.digitalnewsrefactored.base.di.api.HasComponent;
 import artbalnov.digitalnewsrefactored.base.di.scopes.PerActivity;
 import artbalnov.digitalnewsrefactored.domain.models.PostModel;
-import artbalnov.digitalnewsrefactored.presentation.main.favorite.FavoriteActivity;
+import artbalnov.digitalnewsrefactored.presentation.main.PostRecyclerAdapter;
 
 @PerActivity
-@LayoutResourceId(R.layout.activity_main)
-public class MainActivity extends BaseActivity<MainComponent, MainPresenter> implements MainView {
+@LayoutResourceId(R.layout.activity_favorite)
+public class FavoriteActivity extends BaseActivity<FavoriteComponent, FavoritePresenter> implements FavoriteView {
 
     private RecyclerView mPostList;
     private PostRecyclerAdapter mPostAdapter;
-
-    private SwipeRefreshLayout mSwipeRefresher;
 
 
     @Override
     protected void renderView(Bundle savedInstanceState) {
         initToolbar();
-
-        initRefresher();
 
         initList();
     }
@@ -44,11 +39,7 @@ public class MainActivity extends BaseActivity<MainComponent, MainPresenter> imp
     private void initToolbar() {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-    }
-
-    private void initRefresher() {
-        mSwipeRefresher = (SwipeRefreshLayout) findViewById(R.id.swipeRefresh);
-        mSwipeRefresher.setOnRefreshListener(() -> mPresenter.loadPosts());
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     private void initList() {
@@ -81,39 +72,19 @@ public class MainActivity extends BaseActivity<MainComponent, MainPresenter> imp
     }
 
     @Override
-    public void addPostList(List<PostModel> postList) {
-        mPostAdapter.addNewPostList(postList);
+    public void showEmptyFavoriteAlert() {
+        Toast.makeText(this, R.string.empty_favorite_page, Toast.LENGTH_SHORT).show();
     }
 
-
-    @Override
-    public void hideLoader() {
-        mSwipeRefresher.setRefreshing(false);
-    }
-
-    @Override
-    public void showError(String errorMessage) {
-        new AlertDialog.Builder(this)
-                .setTitle(R.string.error_title)
-                .setMessage(errorMessage)
-                .setPositiveButton("Ok", (dialog, which) -> dialog.dismiss());
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
+    public static void startActivity(Context context) {
+        Intent starter = new Intent(context, FavoriteActivity.class);
+        context.startActivity(starter);
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
-        switch (item.getItemId()) {
-            case R.id.action_favorite:
-                FavoriteActivity.startActivity(this);
-                break;
-        }
-
+        if (item.getItemId() == android.R.id.home)
+            onBackPressed();
         return true;
     }
 
@@ -123,11 +94,13 @@ public class MainActivity extends BaseActivity<MainComponent, MainPresenter> imp
     }
 
     @Override
-    public MainComponent provideComponent() {
+    public FavoriteComponent provideComponent() {
         HasComponent<AppComponent> hasComponent = (HasComponent<AppComponent>) getApplication();
-        return DaggerMainComponent
+        return DaggerFavoriteComponent
                 .builder()
                 .appComponent(hasComponent.getComponent())
                 .build();
+
     }
+
 }

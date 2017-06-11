@@ -22,5 +22,8 @@
         </activity>
 
 
+        <activity android:name=".presentation.main.favorite.FavoriteActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+
     </application>
 </manifest>

@@ -45,6 +45,9 @@ public class PostUseCase {
                 .observeOn(AndroidSchedulers.mainThread());
     }
 
+    public Observable<List<PostModel>> getFavoritePosts() {
+        return mPostRepository.getFavoritePosts();
+    }
 
     public void savePost(PostModel postModel) {
         mPostRepository.savePost(postModel);

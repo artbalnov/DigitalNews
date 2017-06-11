@@ -1,4 +1,4 @@
-package artbalnov.digitalnewsrefactored.presentation.main;
+package artbalnov.digitalnewsrefactored.presentation.main.favorite;
 
 import artbalnov.digitalnewsrefactored.application.AppComponent;
 import artbalnov.digitalnewsrefactored.base.di.base.BasePresentationComponent;
@@ -7,6 +7,5 @@ import dagger.Component;
 
 @PerActivity
 @Component(dependencies = AppComponent.class)
-interface MainComponent extends BasePresentationComponent<MainActivity> {
-
+interface FavoriteComponent extends BasePresentationComponent<FavoriteActivity>{
 }
