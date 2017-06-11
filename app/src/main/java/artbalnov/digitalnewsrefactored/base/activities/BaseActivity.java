@@ -14,7 +14,7 @@ import artbalnov.digitalnewsrefactored.base.di.base.BasePresentationComponent;
 import artbalnov.digitalnewsrefactored.base.presenters.BasePresenter;
 
 /**
-* Base Activity class that inject Presenter layer according to MVP pattern
+* Base Activity class that inject {@link Presenter} layer according to MVP pattern
 */
 
 public abstract class BaseActivity<Component extends BasePresentationComponent,

@@ -1,3 +1,7 @@
 <resources>
-    <string name="app_name">DigitalNewsRefactored</string>
+    <string name="app_name">DigitalNews</string>
+    <string name="error_code_is">Error code is</string>
+    <string name="action_favorite">Favorite</string>
+    <string name="action_notification">Notification</string>
+    <string name="error_title">Error</string>
 </resources>

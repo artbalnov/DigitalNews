@@ -21,7 +21,7 @@ import artbalnov.digitalnewsrefactored.base.presenters.BasePresenter;
 
 
 /**
- * Base Fragment class that inject Presenter layer according to MVP pattern
+ * Base Fragment class that inject {@link Presenter} layer according to MVP pattern
  */
 
 public abstract class BaseFragment<Component extends BasePresentationComponent, Presenter extends BasePresenter>

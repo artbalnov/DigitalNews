@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/news_item_padding"
+    android:paddingTop="@dimen/news_item_padding"
+    android:clickable="true"
+    android:background="?android:attr/selectableItemBackground">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/news_item_title_bottom_margin">
+
+        <ImageView
+            android:layout_centerVertical="true"
+            android:id="@+id/ivPostPortalIcon"
+            android:layout_width="@dimen/ic_portal_size"
+            android:layout_height="@dimen/ic_portal_size"
+            android:adjustViewBounds="true"
+            android:src="@drawable/ic_habr" />
+
+        <TextView
+            android:id="@+id/tvPostPortalName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="@dimen/news_item_portal_name_margin"
+            tools:text="Habrahabr"
+            android:textColor="@color/textColorBlack"
+            android:textSize="@dimen/large_text_size"
+            android:layout_toEndOf="@+id/ivPostPortalIcon" />
+
+        <TextView
+            android:id="@+id/tvPostDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/ivPostPortalIcon"
+            android:layout_marginStart="@dimen/news_item_offset_margin"
+            tools:text="22.05.2016"
+            android:textColor="@color/textColorGrey"
+            android:layout_toEndOf="@+id/ivPostPortalIcon" />
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/ivPostThumbnail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal|center_vertical"
+        android:adjustViewBounds="true"
+        android:cropToPadding="false"
+        android:focusableInTouchMode="false" />
+
+    <TextView
+        android:id="@+id/tvPostTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/news_item_offset_margin"
+        android:layout_marginEnd="@dimen/news_item_offset_margin"
+        android:layout_marginTop="@dimen/news_item_offset_margin"
+        android:fontFamily="sans-serif-condensed"
+        tools:text="Test Text"
+        android:textColor="@color/textColorBlack"
+        android:textSize="@dimen/large_text_size" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_horizontal|center_vertical"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/ivViews"
+                android:layout_width="@dimen/ic_views_size"
+                android:layout_height="@dimen/ic_views_size"
+                android:src="@drawable/ic_views" />
+
+            <TextView
+                android:id="@+id/tvPostViews"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/news_item_offset_margin"
+                tools:text="12345"
+                android:textColor="@color/textColorBlack" />
+        </LinearLayout>
+
+        <ImageView
+            android:layout_weight="1"
+            android:id="@+id/ivBtnLike"
+            android:layout_width="@dimen/ic_likes_size"
+            android:layout_height="@dimen/ic_likes_size"
+            android:src="@drawable/ic_like" />
+    </LinearLayout>
+</LinearLayout>

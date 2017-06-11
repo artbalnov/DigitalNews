@@ -3,6 +3,7 @@ package artbalnov.digitalnewsrefactored.application;
 import android.app.Application;
 
 import artbalnov.digitalnewsrefactored.base.di.api.HasComponent;
+import artbalnov.digitalnewsrefactored.constants.Constants;
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
 
@@ -28,6 +29,7 @@ public class App extends Application implements HasComponent<AppComponent> {
     public AppComponent provideComponent() {
         return DaggerAppComponent.builder()
                 .appModule(new AppModule(this))
+                .networkingModule(new NetworkingModule(Constants.BASE_URL))
                 .build();
     }
 

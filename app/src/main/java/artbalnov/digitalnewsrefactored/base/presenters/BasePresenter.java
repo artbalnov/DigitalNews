@@ -3,8 +3,8 @@ package artbalnov.digitalnewsrefactored.base.presenters;
 
 
 import artbalnov.digitalnewsrefactored.base.views.IView;
-import io.reactivex.disposables.CompositeDisposable;
-import io.reactivex.disposables.Disposable;
+import rx.Subscription;
+import rx.subscriptions.CompositeSubscription;
 
 /**
  * Base Presenter class that attach to {@link artbalnov.digitalnewsrefactored.base.activities.BaseActivity}.
@@ -15,7 +15,7 @@ public abstract class BasePresenter<View extends IView> implements IPresenter<Vi
 
     protected View mView;
 
-    private CompositeDisposable mCompositeDisposable;
+    private CompositeSubscription mCompositeSubscription;
 
     private boolean mIsFirstAttach = true;
 
@@ -33,13 +33,13 @@ public abstract class BasePresenter<View extends IView> implements IPresenter<Vi
 
     }
 
-    protected void registerSubscription(Disposable disposable) {
-        if (mCompositeDisposable == null) {
-            mCompositeDisposable = new CompositeDisposable();
+    protected void registerSubscription(Subscription subscription) {
+        if (mCompositeSubscription == null) {
+            mCompositeSubscription = new CompositeSubscription();
         }
 
 
-        mCompositeDisposable.add(disposable);
+        mCompositeSubscription.add(subscription);
 
     }
 
@@ -50,8 +50,8 @@ public abstract class BasePresenter<View extends IView> implements IPresenter<Vi
     @Override
     public final void detachView() {
         onDetach();
-        if (mCompositeDisposable != null) {
-            mCompositeDisposable.clear();
+        if (mCompositeSubscription != null) {
+            mCompositeSubscription.clear();
         }
         mView = null;
     }

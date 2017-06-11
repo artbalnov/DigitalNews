@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
+import artbalnov.digitalnewsrefactored.domain.repositories.PostRepository;
 import dagger.Module;
 import dagger.Provides;
 
@@ -35,5 +36,10 @@ public class AppModule {
     @Provides
     public SharedPreferences provideSharedPreferences(Application application) {
         return PreferenceManager.getDefaultSharedPreferences(application);
+    }
+
+    @Provides
+    public PostRepository providePostRepository() {
+        return new PostRepository();
     }
 }
