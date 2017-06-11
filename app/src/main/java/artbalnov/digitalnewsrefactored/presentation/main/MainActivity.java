@@ -1,7 +1,7 @@
 package artbalnov.digitalnewsrefactored.presentation.main;
 
-import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.DividerItemDecoration;
@@ -21,6 +21,7 @@ import artbalnov.digitalnewsrefactored.base.di.api.HasComponent;
 import artbalnov.digitalnewsrefactored.base.di.scopes.PerActivity;
 import artbalnov.digitalnewsrefactored.domain.models.PostModel;
 import artbalnov.digitalnewsrefactored.presentation.main.favorite.FavoriteActivity;
+import artbalnov.digitalnewsrefactored.presentation.main.detail.DetailActivity;
 
 @PerActivity
 @LayoutResourceId(R.layout.activity_main)
@@ -31,6 +32,12 @@ public class MainActivity extends BaseActivity<MainComponent, MainPresenter> imp
 
     private SwipeRefreshLayout mSwipeRefresher;
 
+
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        setTheme(R.style.AppTheme_NoActionBar);
+        super.onCreate(savedInstanceState);
+    }
 
     @Override
     protected void renderView(Bundle savedInstanceState) {
@@ -62,7 +69,7 @@ public class MainActivity extends BaseActivity<MainComponent, MainPresenter> imp
         mPostAdapter.setPostClickListener(new PostRecyclerAdapter.PostClickListener() {
             @Override
             public void onPostClicked(PostModel postModel) {
-
+                DetailActivity.startActivity(MainActivity.this,postModel.postUrl);
             }
 
             @Override

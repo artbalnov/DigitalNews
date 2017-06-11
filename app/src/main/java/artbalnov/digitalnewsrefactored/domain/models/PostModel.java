@@ -30,7 +30,7 @@ public class PostModel extends RealmObject {
     public String likes;
 
     @SerializedName("REF")
-    public String postLink;
+    public String postUrl;
 
     public boolean isLiked;
 }

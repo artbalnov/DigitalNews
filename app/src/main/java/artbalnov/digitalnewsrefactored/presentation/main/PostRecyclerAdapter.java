@@ -84,7 +84,7 @@ public class PostRecyclerAdapter extends RecyclerView.Adapter<PostRecyclerAdapte
 
         Picasso.with(mContext)
                 .load(postModel.thumbnail)
-                .placeholder(R.drawable.ic_post_placeholder)
+                .placeholder(R.drawable.ic_dn_placeholder)
                 .into(holder.postThumbnail);
     }
 

@@ -13,4 +13,6 @@ public class Constants {
      public static final String PLAYGROUND = "Playground";
 
      public static final String EMPTY_VALUE = "null";
+
+     public static final String KEY_POST_URL = "KEY_POST_URL";
 }
